@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "2nd_Project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-2nd_Project-Debug-cf0d8f4d4ced1f2c9b57.json",
+					"jsonFile" : "target-2nd_Project-Debug-a41d3845a0d3606cb1ea.json",
 					"name" : "2nd_Project",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Outros/3\u00baAno-2\u00baSemestre/DA/2nd_Project/cmake-build-debug",
-		"source" : "C:/Users/Outros/3\u00baAno-2\u00baSemestre/DA/2nd_Project"
+		"build" : "C:/Users/User/Desktop/feup/da/2nd_DA_Project/cmake-build-debug",
+		"source" : "C:/Users/User/Desktop/feup/da/2nd_DA_Project"
 	},
 	"version" : 
 	{

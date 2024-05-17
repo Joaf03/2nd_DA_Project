@@ -1,12 +1,14 @@
 #include "TSPSolver.h"
 
-std::vector<int> TSPSolver::solveTSP(const std::vector<Edge>& edges, int startNode) {
+
+
+vector<int> TSPSolver::solveTSP(const vector<Edge>& edges, int startNode) {
     this->edges = edges;
     this->startNode = startNode;
     this->numNodes = getMaxNodeIndex() + 1;
-    this->bestTourLength = std::numeric_limits<double>::max();
-    std::vector<int> currentTour;
-    std::vector<bool> visited(numNodes, false);
+    this->bestTourLength = numeric_limits<double>::max();
+    vector<int> currentTour;
+    vector<bool> visited(numNodes, false);
     visited[startNode] = true;
     currentTour.push_back(startNode);
     backtrack(0, currentTour, visited);
@@ -16,12 +18,12 @@ std::vector<int> TSPSolver::solveTSP(const std::vector<Edge>& edges, int startNo
 int TSPSolver::getMaxNodeIndex() {
     int maxIndex = 0;
     for (const Edge& edge : edges) {
-        maxIndex = std::max({maxIndex, edge.source, edge.destination});
+        maxIndex = max({maxIndex, edge.source, edge.destination});
     }
     return maxIndex;
 }
 
-double TSPSolver::calculateTourLength(const std::vector<int>& tour) {
+double TSPSolver::calculateTourLength(const vector<int>& tour) {
     double tourLength = 0.0;
     for (size_t i = 0; i < tour.size() - 1; ++i) {
         int source = tour[i];
@@ -37,7 +39,7 @@ double TSPSolver::calculateTourLength(const std::vector<int>& tour) {
     return tourLength;
 }
 
-void TSPSolver::backtrack(double currentLength, std::vector<int>& currentTour, std::vector<bool>& visited) {
+void TSPSolver::backtrack(double currentLength, vector<int>& currentTour, vector<bool>& visited) {
     if (currentTour.size() == numNodes) {
         // Complete tour found, update best tour if shorter
         currentLength += getDistance(currentTour.back(), startNode);
@@ -70,5 +72,5 @@ double TSPSolver::getDistance(int source, int destination) {
             return edge.distance;
         }
     }
-    return std::numeric_limits<double>::max(); // Should not happen
+    return numeric_limits<double>::max(); // Should not happen
 }

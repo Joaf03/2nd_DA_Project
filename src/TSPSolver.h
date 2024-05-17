@@ -7,19 +7,21 @@
 #include <algorithm>
 #include <limits>
 
+using namespace std;
+
 class TSPSolver {
 public:
-    std::vector<int> solveTSP(const std::vector<Edge>& edges, int startNode);
-    double calculateTourLength(const std::vector<int>& tour);
+    vector<int> solveTSP(const vector<Edge>& edges, int startNode);
+    double calculateTourLength(const vector<int>& tour);
     int getMaxNodeIndex();
-    void backtrack(double currentLength, std::vector<int>& currentTour, std::vector<bool>& visited);
+    void backtrack(double currentLength, vector<int>& currentTour, vector<bool>& visited);
     double getDistance(int source, int destination);
 
 private:
-    std::vector<Edge> edges;
+    vector<Edge> edges;
     int startNode;
     int numNodes;
-    std::vector<int> bestTour;
+    vector<int> bestTour;
     double bestTourLength;
 };
 
