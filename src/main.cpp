@@ -58,17 +58,42 @@ int main() {
 
             // Load the nodes and edges from the csv files
             vector<Edge> edges = DataLoader::loadFullyConnectedEdges("../csv_Files/Extra_Fully_Connected_Graphs/edges_25.csv");
-            vector<Node> nodes = DataLoader::getLessNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv", 1000);
+            cout << "How many nodes you want to load? (0 - all nodes)" << endl;
+            int n;
+            cin >> n;
+            vector<Node> nodes;
+            if(n == 0) {
+                nodes = DataLoader::getNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv");
+            } else {
+                nodes = DataLoader::getLessNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv", n);
+            }
+
 
             // Run the Triangular Approximation Heuristic algorithm (Greedy Version)
-            DistanceCache distanceCache;
-            auto startTAH = chrono::high_resolution_clock::now();
-            vector<Edge> tour = TAH::triangularApproximationHeuristicGreedy(nodes, distanceCache, edges);
-            auto endTAH = chrono::high_resolution_clock::now();
-            auto durationTAH = chrono::duration_cast<chrono::seconds>(endTAH - startTAH).count();
+            cout << "Select which version, you want to use: " << endl;
+            cout << "1 - Greedy Version" << endl;
+            cout << "2 - Approximation Version" << endl;
+            int version;
+            cin >> version;
+            if(version == 1) {
+                DistanceCache distanceCache;
+                auto startTAH = chrono::high_resolution_clock::now();
+                vector<Edge> tour = TAH::triangularApproximationHeuristicGreedy(nodes, distanceCache, edges);
+                auto endTAH = chrono::high_resolution_clock::now();
+                auto durationTAH = chrono::duration_cast<chrono::seconds>(endTAH - startTAH).count();
 
-            cout << "Distance using Triangular Approximation Heuristic (Greedy Version): " << TAH::getTotalDistance(tour) << endl;
-            cout << "Execution time for TAH (Greedy Version): " << durationTAH << " seconds" << endl;
+                cout << "Distance using Triangular Approximation Heuristic (Greedy Version): " << TAH::getTotalDistance(tour) << endl;
+                cout << "Execution time for TAH (Greedy Version): " << durationTAH << " seconds" << endl;
+            } else if(version == 2) {
+                DistanceCache distanceCache;
+                auto startTAH = chrono::high_resolution_clock::now();
+                vector<Edge> tour = TAH::triangularApproximationHeuristicApproximation(nodes, distanceCache, edges);
+                auto endTAH = chrono::high_resolution_clock::now();
+                auto durationTAH = chrono::duration_cast<chrono::seconds>(endTAH - startTAH).count();
+
+                cout << "Distance using Triangular Approximation Heuristic (Approximation Version): " << TAH::getTotalDistance(tour) << endl;
+                cout << "Execution time for TAH (Approximation Version): " << durationTAH << " seconds" << endl;
+            }
 
             int userInput;
             cout << "\nType 1 to return: ";
@@ -84,7 +109,15 @@ int main() {
         if (filter == 3) {
 
             vector<Edge> edges = DataLoader::loadFullyConnectedEdges("../csv_Files/Extra_Fully_Connected_Graphs/edges_25.csv");
-            vector<Node> nodes = DataLoader::getLessNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv", 1000);
+            cout << "How many nodes you want to load? (0 - all nodes)" << endl;
+            int n;
+            cin >> n;
+            vector<Node> nodes;
+            if(n == 0) {
+                nodes = DataLoader::getNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv");
+            } else {
+                nodes = DataLoader::getLessNodes("../csv_Files/Extra_Fully_Connected_Graphs/nodes.csv", n);
+            }
 
             // Define the parameters for the Ant Colony Optimization algorithm
 
